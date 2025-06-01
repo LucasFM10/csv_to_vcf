@@ -1,0 +1,38 @@
+# Ambientes Virtuais
+venv/
+venv_vcf_generator/
+env/
+.env
+*.pyc
+__pycache__/
+instance/
+.webassets-cache
+
+# Banco de dados
+db.sqlite3
+*.sqlite3
+
+# Arquivos de IDE e Sistema Operacional
+.idea/
+.vscode/
+*.DS_Store
+Thumbs.db
+
+# Arquivos de dependências do Python
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+
+# Mídia estática e de usuário (se você não quiser versioná-los diretamente)
+# staticfiles/ (se gerado pelo collectstatic e não parte do seu código fonte direto)
+# mediafiles/
+
+# Segredos (NUNCA adicione arquivos com senhas ou chaves secretas ao Git)
+# Se você tiver um arquivo .env para segredos, ele já está acima.
+# Se você tiver um settings_local.py ou similar, adicione-o:
+# local_settings.py
+# settings_local.py
