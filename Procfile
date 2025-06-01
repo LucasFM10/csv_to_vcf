@@ -1,2 +1,2 @@
-release: python project/manage.py migrate
-web: gunicorn dcrm.wsgi --pythonpath project --log-file=-
+release: python manage.py migrate
+web: gunicorn vcf_generator.wsgi --log-file=-
