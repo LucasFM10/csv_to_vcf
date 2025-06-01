@@ -37,7 +37,7 @@
                 <h5 class="mb-3">1. Enviar Arquivo CSV</h5>
                 <div class="mb-3">
                     <label for="csvFile" class="form-label">Selecione o arquivo CSV:</label>
-                    <input class="form-control" type="file" id="csvFile" name="csv_file" accept=".csv" {% if show_config_section %}disabled{% endif %} {% if not show_config_section %}required{% endif %}>
+                    <input class="form-control" type="file" id="csvFile" name="csv_file" {% if show_config_section %}disabled{% endif %} {% if not show_config_section %}required{% endif %}>
                     <div class="form-text">O arquivo deve estar codificado em UTF-8 para melhor compatibilidade.</div>
                 </div>
                 <button type="submit" id="analyzeCsvButton" name="action" value="analyze_csv" class="btn btn-primary w-100" {% if show_config_section %}disabled{% endif %}>
