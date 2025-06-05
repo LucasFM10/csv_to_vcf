@@ -6,7 +6,7 @@ from .models import Participante, Dupla
 @admin.register(Participante)
 class ParticipanteAdmin(admin.ModelAdmin):
     list_display = ('nome', 'genero')
-    search_fields = ('nome')
+    search_fields = ('nome',)
     list_filter = ('genero',)
 
 @admin.register(Dupla)
