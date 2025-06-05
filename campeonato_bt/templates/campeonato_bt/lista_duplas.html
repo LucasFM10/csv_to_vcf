@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Duplas do Campeonato</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .columns {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .column {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+            padding: 1rem;
+        }
+
+        .column h2 {
+            text-align: center;
+            color: #444;
+        }
+
+        .dupla {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dupla:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Duplas do Campeonato</h1>
+    <div class="columns">
+        <div class="column">
+            <h2>Femininas</h2>
+            {% for dupla in duplas_femininas %}
+                <div class="dupla">{{ dupla }}</div>
+            {% empty %}
+                <p>Nenhuma dupla feminina.</p>
+            {% endfor %}
+        </div>
+        <div class="column">
+            <h2>Masculinas</h2>
+            {% for dupla in duplas_masculinas %}
+                <div class="dupla">{{ dupla }}</div>
+            {% empty %}
+                <p>Nenhuma dupla masculina.</p>
+            {% endfor %}
+        </div>
+        <div class="column">
+            <h2>Mistas</h2>
+            {% for dupla in duplas_mistas %}
+                <div class="dupla">{{ dupla }}</div>
+            {% empty %}
+                <p>Nenhuma dupla mista.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
