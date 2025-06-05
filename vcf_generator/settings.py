@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['www.potedemel.ninja', '127.0.0.1']
 
 INSTALLED_APPS = [
     'vcf_app',
+    'campeonato_bt',
 
     'django.contrib.admin',
     'django.contrib.auth',
