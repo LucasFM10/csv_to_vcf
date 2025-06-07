@@ -75,19 +75,17 @@
         </div>
     </div>
     <hr>
-    <h2 style="text-align: center;">Chaveamento dos Jogos (Todos contra todos)</h2>
-    <div style="margin-top: 2rem;">
-        {% for rodada in rodadas %}
-            <div style="margin-bottom: 1rem;">
-                <h3>Rodada {{ forloop.counter }}</h3>
-                <ul>
-                    {% for dupla1, dupla2 in rodada %}
-                        <li>{{ dupla1 }} <strong>x</strong> {{ dupla2 }}</li>
-                    {% endfor %}
-                </ul>
-            </div>
-        {% endfor %}
+    <h2 style="text-align: center; margin-top: 3rem;">Confrontos – Duplas Mistas</h2>
+    <div style="margin-top: 1rem;">
+        <ul>
+            {% for dupla1, dupla2 in confrontos_mistos %}
+                <li>{{ dupla1 }} <strong>x</strong> {{ dupla2 }}</li>
+            {% empty %}
+                <p>Nenhum confronto disponível. É necessário pelo menos 2 duplas mistas.</p>
+            {% endfor %}
+        </ul>
     </div>
+
 
 </body>
 </html>

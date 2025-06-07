@@ -27,12 +27,12 @@ def listar_duplas_view(request):
     duplas_masculinas = [d for d in todas_duplas if d.tipo == 'Masculina']
     duplas_mistas = [d for d in todas_duplas if d.tipo == 'Mista']
 
-    rodadas = gerar_jogos_rodadas(todas_duplas)
+    confrontos_mistos = list(combinations(duplas_mistas, 2))
 
     context = {
         'duplas_femininas': duplas_femininas,
         'duplas_masculinas': duplas_masculinas,
         'duplas_mistas': duplas_mistas,
-        'rodadas': rodadas,
+        'confrontos_mistos': confrontos_mistos,
     }
     return render(request, 'campeonato_bt/lista_duplas.html', context)
