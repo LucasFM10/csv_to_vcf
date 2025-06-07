@@ -42,19 +42,33 @@ def listar_duplas_view(request):
     return render(request, 'campeonato_bt/lista_duplas.html', context)
 
 def equilibrar_confrontos(duplas):
+    """
+    Gera confrontos em ordem onde as duplas não jogam várias vezes seguidas.
+    Baseado em um algoritmo round-robin com reordenação simples.
+    """
+    from collections import deque
+    from itertools import combinations
+
     confrontos = list(combinations(duplas, 2))
     agenda = []
-    usados_recentemente = set()
+    ultima_dupla = None
+    fila = deque(confrontos)
 
-    while confrontos:
-        for i, (a, b) in enumerate(confrontos):
-            if a not in usados_recentemente and b not in usados_recentemente:
-                agenda.append((a, b))
-                usados_recentemente = {a, b}
-                confrontos.pop(i)
+    while fila:
+        for _ in range(len(fila)):
+            confronto = fila.popleft()
+            dupla1, dupla2 = confronto
+
+            if ultima_dupla not in confronto:
+                agenda.append(confronto)
+                ultima_dupla = random.choice(confronto)  # Para embaralhar o foco
                 break
+            else:
+                fila.append(confronto)
         else:
-            # Se todas as duplas estiverem ocupadas recentemente, "descansa" e reinicia
-            usados_recentemente.clear()
+            # Nenhum confronto disponível sem repetição: força um (evita loop infinito)
+            agenda.append(fila.popleft())
+            ultima_dupla = None
 
     return agenda
+
