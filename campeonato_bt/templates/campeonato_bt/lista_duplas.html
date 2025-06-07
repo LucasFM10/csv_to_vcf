@@ -76,16 +76,31 @@
     </div>
     <hr>
     <h2 style="text-align: center; margin-top: 3rem;">Confrontos – Duplas Mistas</h2>
-    <div style="margin-top: 1rem;">
-        <ul>
-            {% for dupla1, dupla2 in confrontos_mistos %}
-                <li>{{ dupla1 }} <strong>x</strong> {{ dupla2 }}</li>
-            {% empty %}
-                <p>Nenhum confronto disponível. É necessário pelo menos 2 duplas mistas.</p>
-            {% endfor %}
-        </ul>
-    </div>
 
+    <table style="width: 100%; border-collapse: collapse; margin-top: 1.5rem;">
+        <thead>
+            <tr>
+                <th style="width: 45%; padding: 0.5rem; text-align: center; border-bottom: 2px solid #ccc;">Dupla 1</th>
+                <th style="width: 10%; padding: 0.5rem; text-align: center; border-bottom: 2px solid #ccc;">x</th>
+                <th style="width: 45%; padding: 0.5rem; text-align: center; border-bottom: 2px solid #ccc;">Dupla 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dupla1, dupla2 in confrontos_mistos %}
+                <tr>
+                    <td style="text-align: center; padding: 0.75rem; border-bottom: 1px solid #eee;">
+                        {{ dupla1.participante_1 }}<br>& {{ dupla1.participante_2 }}
+                    </td>
+                    <td style="text-align: center; font-weight: bold; font-size: 1.2rem;">x</td>
+                    <td style="text-align: center; padding: 0.75rem; border-bottom: 1px solid #eee;">
+                        {{ dupla2.participante_1 }}<br>& {{ dupla2.participante_2 }}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr><td colspan="3" style="text-align: center; padding: 1rem;">Nenhum confronto disponível.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 </body>
 </html>

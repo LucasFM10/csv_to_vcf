@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Dupla
 from itertools import combinations
 import random
+from itertools import combinations
 
 def gerar_jogos_rodadas(duplas):
     confrontos = list(combinations(duplas, 2))
@@ -28,6 +29,8 @@ def listar_duplas_view(request):
     duplas_mistas = [d for d in todas_duplas if d.tipo == 'Mista']
 
     confrontos_mistos = list(combinations(duplas_mistas, 2))
+    
+    confrontos_mistos = equilibrar_confrontos(duplas_mistas)
 
     context = {
         'duplas_femininas': duplas_femininas,
@@ -35,4 +38,23 @@ def listar_duplas_view(request):
         'duplas_mistas': duplas_mistas,
         'confrontos_mistos': confrontos_mistos,
     }
+
     return render(request, 'campeonato_bt/lista_duplas.html', context)
+
+def equilibrar_confrontos(duplas):
+    confrontos = list(combinations(duplas, 2))
+    agenda = []
+    usados_recentemente = set()
+
+    while confrontos:
+        for i, (a, b) in enumerate(confrontos):
+            if a not in usados_recentemente and b not in usados_recentemente:
+                agenda.append((a, b))
+                usados_recentemente = {a, b}
+                confrontos.pop(i)
+                break
+        else:
+            # Se todas as duplas estiverem ocupadas recentemente, "descansa" e reinicia
+            usados_recentemente.clear()
+
+    return agenda
