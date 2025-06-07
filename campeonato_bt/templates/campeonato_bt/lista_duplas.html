@@ -13,10 +13,12 @@
             flex-direction: column;
             align-items: center;
         }
+
         h1 {
             text-align: center;
             margin-bottom: 2rem;
         }
+
         .columns {
             display: flex;
             justify-content: space-between;
@@ -25,6 +27,7 @@
             width: 100%;
             margin-bottom: 3rem;
         }
+
         .column {
             flex: 1;
             background: white;
@@ -32,53 +35,53 @@
             box-shadow: 0 0 10px #ccc;
             padding: 1rem;
         }
+
         .column h2 {
             text-align: center;
             color: #444;
         }
+
         .dupla {
             margin: 0.5rem 0;
             padding: 0.5rem;
             border-bottom: 1px solid #eee;
         }
+
         .dupla:last-child {
             border-bottom: none;
         }
+
         table {
             width: 600px;
             max-width: 90%;
             border-collapse: collapse;
-            margin-top: 1rem;
+            margin-top: 2rem;
             background-color: white;
             box-shadow: 0 0 10px #ccc;
             border-radius: 8px;
             overflow: hidden;
         }
+
         th, td {
             border-bottom: 1px solid #eee;
             padding: 1rem;
             text-align: center;
         }
+
         td.dupla-col {
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
         }
+
         h3 {
             margin-top: 3rem;
             text-align: center;
-            font-size: 1.5rem;
-        }
-        h4 {
-            margin-top: 2.5rem;
-            text-align: center;
-            color: #333;
-            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
     <h1>Duplas do Campeonato</h1>
+
     <div class="columns">
         <div class="column">
             <h2>Femininas</h2>
@@ -106,9 +109,7 @@
         </div>
     </div>
 
-    <h3>🔸 Fase de Grupos 🔸</h3>
-
-    <h4>Grupo 1</h4>
+    <h3>🔸 Fase de Grupos</h3>
     <table>
         <thead>
             <tr>
@@ -118,7 +119,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for dupla1, dupla2 in confrontos_fase_grupos[:3] %}
+            {% for dupla1, dupla2 in confrontos_fase_grupos %}
             <tr>
                 <td class="dupla-col">
                     <span>{{ dupla1.participante_1 }}</span>
@@ -134,33 +135,7 @@
         </tbody>
     </table>
 
-    <h4>Grupo 2</h4>
-    <table>
-        <thead>
-            <tr>
-                <th>Dupla 1</th>
-                <th>X</th>
-                <th>Dupla 2</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for dupla1, dupla2 in confrontos_fase_grupos[3:] %}
-            <tr>
-                <td class="dupla-col">
-                    <span>{{ dupla1.participante_1 }}</span>
-                    <span>{{ dupla1.participante_2 }}</span>
-                </td>
-                <td>X</td>
-                <td class="dupla-col">
-                    <span>{{ dupla2.participante_1 }}</span>
-                    <span>{{ dupla2.participante_2 }}</span>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <h3>🏆 Eliminatórias 🏆</h3>
+    <h3>🏆 Eliminatórias</h3>
     <table>
         <thead>
             <tr>
@@ -183,5 +158,6 @@
             {% endfor %}
         </tbody>
     </table>
+
 </body>
 </html>
