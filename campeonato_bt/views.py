@@ -30,7 +30,7 @@ def listar_duplas_view(request):
 
     confrontos_mistos = list(combinations(duplas_mistas, 2))
     
-    confrontos_mistos = equilibrar_confrontos(duplas_mistas)
+    confrontos_mistos = gerar_confrontos_balanceados(duplas_mistas)
 
     context = {
         'duplas_femininas': duplas_femininas,
@@ -72,3 +72,34 @@ def equilibrar_confrontos(duplas):
 
     return agenda
 
+def gerar_confrontos_balanceados(duplas):
+    confrontos = list(combinations(duplas, 2))  # 15 confrontos únicos
+    random.shuffle(confrontos)
+
+    agenda = []
+    tentativas = 0
+    max_tentativas = 10000
+
+    while tentativas < max_tentativas:
+        agenda.clear()
+        usados = set()
+
+        for confronto in confrontos:
+            dupla1, dupla2 = confronto
+
+            if (
+                not agenda or
+                (dupla1 not in agenda[-1] and dupla2 not in agenda[-1])
+            ):
+                agenda.append(confronto)
+            else:
+                # Tenta reordenar novamente
+                random.shuffle(confrontos)
+                break
+
+        if len(agenda) == 15:
+            return agenda  # Sucesso
+
+        tentativas += 1
+
+    raise Exception("Não foi possível gerar agenda sem jogos consecutivos da mesma dupla.")
