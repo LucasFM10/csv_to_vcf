@@ -9,6 +9,9 @@
             background-color: #fafafa;
             margin: 0;
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         h1 {
@@ -20,6 +23,9 @@
             display: flex;
             justify-content: space-between;
             gap: 2rem;
+            max-width: 1000px;
+            width: 100%;
+            margin-bottom: 3rem;
         }
 
         .column {
@@ -44,10 +50,38 @@
         .dupla:last-child {
             border-bottom: none;
         }
+
+        table {
+            width: 600px;
+            max-width: 90%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background-color: white;
+            box-shadow: 0 0 10px #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border-bottom: 1px solid #eee;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        td.dupla-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h3 {
+            margin-top: 3rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1>Duplas do Campeonato</h1>
+
     <div class="columns">
         <div class="column">
             <h2>Femininas</h2>
@@ -74,35 +108,56 @@
             {% endfor %}
         </div>
     </div>
-    <hr>
-    <h2 style="text-align: center; margin-top: 3rem;">Confrontos – Duplas Mistas</h2>
 
-    <div style="max-width: 700px; margin: 0 auto;">
-        <table style="width: 100%; border-collapse: collapse; margin-top: 1.5rem;">
-            <thead>
-                <tr>
-                    <th style="width: 45%; padding: 0.5rem; text-align: center; border-bottom: 2px solid #ccc;">Dupla 1</th>
-                    <th style="width: 10%; padding: 0.5rem; text-align: center; border-bottom: 2px solid #ccc;">x</th>
-                    <th style="width: 45%; padding: 0.5rem; text-align: center; border-bottom: 2px solid #ccc;">Dupla 2</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for dupla1, dupla2 in confrontos_mistos %}
-                    <tr>
-                        <td style="text-align: center; padding: 0.75rem; border-bottom: 1px solid #eee;">
-                            {{ dupla1.participante_1 }}<br>& {{ dupla1.participante_2 }}
-                        </td>
-                        <td style="text-align: center; font-weight: bold; font-size: 1.2rem;">x</td>
-                        <td style="text-align: center; padding: 0.75rem; border-bottom: 1px solid #eee;">
-                            {{ dupla2.participante_1 }}<br>& {{ dupla2.participante_2 }}
-                        </td>
-                    </tr>
-                {% empty %}
-                    <tr><td colspan="3" style="text-align: center; padding: 1rem;">Nenhum confronto disponível.</td></tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+    <h3>🔸 Fase de Grupos</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Dupla 1</th>
+                <th>X</th>
+                <th>Dupla 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dupla1, dupla2 in confrontos_fase_grupos %}
+            <tr>
+                <td class="dupla-col">
+                    <span>{{ dupla1.participante_1 }}</span>
+                    <span>{{ dupla1.participante_2 }}</span>
+                </td>
+                <td>X</td>
+                <td class="dupla-col">
+                    <span>{{ dupla2.participante_1 }}</span>
+                    <span>{{ dupla2.participante_2 }}</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>🏆 Eliminatórias</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Dupla 1</th>
+                <th>X</th>
+                <th>Dupla 2</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dupla1, dupla2 in confrontos_eliminatorios %}
+            <tr>
+                <td class="dupla-col">
+                    <span>{{ dupla1 }}</span>
+                </td>
+                <td>X</td>
+                <td class="dupla-col">
+                    <span>{{ dupla2 }}</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
 </body>
 </html>
